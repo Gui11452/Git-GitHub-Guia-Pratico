@@ -524,7 +524,24 @@ git push --force
 - Certifique-se de que ninguém depende do commit que você está removendo.
 
 
-### 10.3 - Desfazer Vários Commits
+
+### 10.3 - Usando git checkout para Voltar a Um Commit ou Arquivo
+Com o git checkout, você pode voltar a um commit específico ou restaurar um arquivo modificado, sem alterar o histórico de commits.
+
+#### a) Navegar para um Commit Específico (Detached HEAD)
+```
+git checkout <ID-do-commit>
+```
+Isso coloca o repositório em estado detached HEAD. Você pode explorar o estado do projeto nesse commit, mas precisará voltar para uma branch para continuar trabalhando.
+
+#### b) Voltar a Um Arquivo Modificado Sem Alterar o Histórico
+```
+git checkout -- nome-do-arquivo
+```
+Isso desfaz todas as alterações não commitadas no arquivo especificado, restaurando-o para o último commit.
+
+
+### 10.4 - Desfazer Vários Commits
 Se você quiser desfazer mais de um commit, pode usar o HEAD~n, onde n é o número de commits a desfazer.
 
 #### Exemplo: Desfazer os Últimos 3 Commits
@@ -536,7 +553,7 @@ Ou, para apagar completamente as alterações dos últimos 3 commits:
 git reset --hard HEAD~3
 ```
 
-### 10.4 - Excluir uma Branch com Commits Indesejados
+### 10.5 - Excluir uma Branch com Commits Indesejados
 Se você cometeu em uma branch específica e quer removê-la junto com os commits:
 
 #### Deletar a branch local:
@@ -548,7 +565,7 @@ git branch -D nome-da-branch
 git push origin --delete nome-da-branch
 ```
 
-### 10.5 - Cancelar um Commit Durante um Rebase
+### 10.6 - Cancelar um Commit Durante um Rebase
 Se você está fazendo um rebase e quer excluir um commit específico:
 
 #### a) Inicie um rebase interativo:
@@ -559,7 +576,7 @@ git rebase -i HEAD~n
 #### c) Salve e feche o editor para aplicar as mudanças.
 
 
-### 10.6 - Resumo dos Comandos Importantes
+### 10.7 - Resumo dos Comandos Importantes
 | Comando   | Descrição       | 
 | :---------- | :--------- | 
 | `git reset --soft HEAD~1` | Remove o commit, mantém as alterações no stage. | 
@@ -567,6 +584,8 @@ git rebase -i HEAD~n
 | `git revert <ID-do-commit>` | Cria um novo commit que desfaz o anterior. |  
 | `git push --force` | Envia forçadamente as mudanças para o remoto. |  
 | `git branch -D nome-da-branch` | Deleta uma branch local com commits indesejados. |  
+| `git checkout <ID-do-commit>` | Navega para um commit específico (Detached HEAD). |  
+| `git checkout -- nome-do-arquivo` | Desfaz alterações não commitadas em um arquivo. |  
 | `git rebase -i HEAD~n` | Edita ou exclui commits durante um rebase. |  
 
 
