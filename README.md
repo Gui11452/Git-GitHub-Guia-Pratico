@@ -2,21 +2,22 @@
 # Git e Github - Guia Prático
 
 ## Sumário
-1. [O que é Git?](#1---o-que-é-git?)
-2. [Instalação e Configuração](#2---o-que-é-github?)
-3. [Instalação do GIT no Windows](#3--instalação-do-git-no-windows)
-4. [Salvando a primeira versão de um projeto no GitHub](#4---salvando-a-primeira-versão-de-um-projeto-no-gitHub)
-5. [Salvando um Novo Commit](#5---salvando-um-novo-commit)
-6. [Arquivo .gitignore](#6---arquivo-.gitignore)
-7. [O que é uma Branch no Git?](#7---o-que-é-uma-branch-no-git?)
-8. [Branches Locais e Remotas](#8---branches-locais-e-remotas)
-9. [Estados dos Arquivos no Git](#9---estados-dos-arquivos-no-git)
-10. [Desfazer e Excluir Commits](#10---desfazer-e-excluir-commits)
-11. [Como Resolver Conflitos no Git](#11---como-resolver-conflitos-no-git)
-12. [git pull](#12---git-pull)
+1. [O que e Git?](#1---o-que-e-git?)
+2. [O que e GitHub?](#1---o-que-e-git-hub?)
+3. [Instalacão e Configuracão](#2---o-que-e-github?)
+4. [Instalacão do GIT no Windows](#3--instalacão-do-git-no-windows)
+5. [Salvando a primeira versão de um projeto no GitHub](#4---salvando-a-primeira-versão-de-um-projeto-no-gitHub)
+6. [Salvando um Novo Commit](#5---salvando-um-novo-commit)
+7. [Arquivo gitignore](#6---arquivo-gitignore)
+8. [O que e uma Branch no Git?](#7---o-que-e-uma-branch-no-git?)
+9. [Branches Locais e Remotas](#8---branches-locais-e-remotas)
+10. [Estados dos Arquivos no Git](#9---estados-dos-arquivos-no-git)
+11. [Desfazer e Excluir Commits](#10---desfazer-e-excluir-commits)
+12. [Como Resolver Conflitos no Git](#11---como-resolver-conflitos-no-git)
+13. [git pull](#12---git-pull)
 
 
-## 1 - O que é Git?
+## 1 - O que e Git?
 O Git é um sistema de controle de versão distribuído que permite rastrear as alterações em arquivos e coordenar o trabalho em equipe. Ele é essencial para o desenvolvimento de software, permitindo que vários colaboradores trabalhem simultaneamente, mantendo um histórico completo das modificações e facilitando a colaboração sem conflitos.
 
 ### Funcionalidades principais:
@@ -26,7 +27,7 @@ O Git é um sistema de controle de versão distribuído que permite rastrear as 
 - **Reversão**: Volte para versões anteriores se necessário.
 
 
-## 2 - O que é GitHub?
+## 2 - O que e GitHub?
 O GitHub é uma plataforma de hospedagem de código baseada no Git, que facilita a colaboração em projetos. Além de armazenar e compartilhar repositórios, oferece ferramentas para gerenciamento de projetos, revisão de código e integração contínua.
 
 ### GitHub facilita:
@@ -36,7 +37,7 @@ O GitHub é uma plataforma de hospedagem de código baseada no Git, que facilita
 - Implementação de CI/CD (Integração e Entrega Contínua).
 
 
-## 3 - Instalação do GIT no Windows
+## 3 - Instalacão do GIT no Windows
 - 1 = Baixar o Git: Acesse https://git-scm.com e baixe a versão para Windows.
 - 2 = Instalar:
    - Execute o instalador.
@@ -49,7 +50,7 @@ O GitHub é uma plataforma de hospedagem de código baseada no Git, que facilita
    - Se a versão for exibida, está instalado com sucesso.
 
 
-## Configurando sua identificação
+## Configurando sua identificacão
 É importante que seu Git saiba quem você é para associar os commits ao seu nome e email.
 
 #### Configurar nome e email:
@@ -161,7 +162,7 @@ git commit -m "Descrição do que foi alterado"
 git push
 ```
 
-## 6 - Arquivo .gitignore
+## 6 - Arquivo gitignore
 O arquivo .gitignore é usado para indicar quais arquivos ou pastas o Git deve ignorar e não versionar. Isso é útil para arquivos temporários, credenciais ou dependências que não precisam estar no repositório.
 
 #### 6.1 - Criar um arquivo .gitignore na raiz do projeto.
@@ -187,7 +188,7 @@ git push
 ```
 
 
-## 7 - O que é uma Branch no Git?
+## 7 - O que e uma Branch no Git?
 Uma branch (ramificação) é uma linha paralela de desenvolvimento dentro de um projeto Git. Ela permite que você trabalhe em novas funcionalidades ou correções sem afetar o código principal. Quando a nova funcionalidade está pronta, você pode mesclá-la (merge) com a branch principal, geralmente chamada de main ou master.
 
 ### Por Que Usar Branches?
