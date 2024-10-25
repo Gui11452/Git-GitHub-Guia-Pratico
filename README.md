@@ -4,17 +4,16 @@
 ## Sumário
 1. [O que e Git?](#1---o-que-e-git?)
 2. [O que e GitHub?](#1---o-que-e-git-hub?)
-3. [Instalacão e Configuracão](#2---o-que-e-github?)
-4. [Instalacão do GIT no Windows](#3--instalacão-do-git-no-windows)
-5. [Salvando a primeira versão de um projeto no GitHub](#4---salvando-a-primeira-versão-de-um-projeto-no-gitHub)
-6. [Salvando um Novo Commit](#5---salvando-um-novo-commit)
-7. [Arquivo gitignore](#6---arquivo-gitignore)
-8. [O que e uma Branch no Git?](#7---o-que-e-uma-branch-no-git?)
-9. [Branches Locais e Remotas](#8---branches-locais-e-remotas)
-10. [Estados dos Arquivos no Git](#9---estados-dos-arquivos-no-git)
-11. [Desfazer e Excluir Commits](#10---desfazer-e-excluir-commits)
-12. [Como Resolver Conflitos no Git](#11---como-resolver-conflitos-no-git)
-13. [git pull](#12---git-pull)
+3. [Instalacão do GIT no Windows](#3--instalacão-do-git-no-windows)
+4. [Salvando a primeira versão de um projeto no GitHub](#4---salvando-a-primeira-versão-de-um-projeto-no-gitHub)
+5. [Salvando um Novo Commit](#5---salvando-um-novo-commit)
+6. [Arquivo gitignore](#6---arquivo-gitignore)
+7. [O que e uma Branch no Git?](#7---o-que-e-uma-branch-no-git?)
+8. [Branches Locais e Remotas](#8---branches-locais-e-remotas)
+9. [Estados dos Arquivos no Git](#9---estados-dos-arquivos-no-git)
+10. [Desfazer e Excluir Commits](#10---desfazer-e-excluir-commits)
+11. [Como Resolver Conflitos no Git](#11---como-resolver-conflitos-no-git)
+12. [git pull](#12---git-pull)
 
 
 ## 1 - O que e Git?
