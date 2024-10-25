@@ -3,7 +3,7 @@
 
 ## Sumário
 1. [O que e Git](#1---o-que-e-git)
-2. [O que e GitHub](#1---o-que-e-github)
+2. [O que e Github](#1---o-que-e-github)
 3. [Instalacão do Git no Windows](#3---instalacão-do-git-no-windows)
 4. [Salvando a primeira versão de um projeto no GitHub](#4---salvando-a-primeira-versão-de-um-projeto-no-gitHub)
 5. [Salvando um Novo Commit](#5---salvando-um-novo-commit)
@@ -14,6 +14,7 @@
 10. [Desfazer e Excluir Commits](#10---desfazer-e-excluir-commits)
 11. [Como Resolver Conflitos no Git](#11---como-resolver-conflitos-no-git)
 12. [git pull](#12---git-pull)
+13. [Pull Request](#13---pull-request)
 
 
 ## 1 - O que e Git
@@ -26,7 +27,7 @@ O Git é um sistema de controle de versão distribuído que permite rastrear as 
 - **Reversão**: Volte para versões anteriores se necessário.
 
 
-## 2 - O que e GitHub
+## 2 - O que e Github
 O GitHub é uma plataforma de hospedagem de código baseada no Git, que facilita a colaboração em projetos. Além de armazenar e compartilhar repositórios, oferece ferramentas para gerenciamento de projetos, revisão de código e integração contínua.
 
 ### GitHub facilita:
@@ -806,3 +807,86 @@ Se você quer apenas baixar as atualizações do repositório remoto sem mesclar
 git fetch origin main
 ```
 Isso baixa as alterações para seu repositório local, mas você pode decidir quando e como fazer o merge manualmente.
+
+
+
+## 13. Pull Request
+Um Pull Request (PR) é uma solicitação de merge em plataformas de hospedagem de código, como GitHub, GitLab ou Bitbucket. Ele é utilizado quando você quer mesclar as mudanças de uma branch para outra, geralmente de uma branch de funcionalidade para a branch principal (main ou master).
+
+### Quando Usar um Pull Request?
+- Quando você conclui uma nova funcionalidade ou correção em uma branch separada e deseja que essa mudança seja revisada antes de ser incorporada à branch principal.
+- Em projetos colaborativos, outros desenvolvedores podem revisar, comentar e aprovar as alterações antes do merge.
+
+
+### Fluxo Completo de um Pull Request
+#### 13.1 Criar uma Nova Branch
+
+- **a)** Crie uma nova branch para desenvolver a funcionalidade:
+```
+git checkout -b nova-funcionalidade
+```
+
+- **b)** Adicione e faça commits com as mudanças:
+```
+git add .
+git commit -m "Adiciona nova funcionalidade"
+```
+
+- **c)** Envie a branch para o repositório remoto:
+```
+git push -u origin nova-funcionalidade
+```
+
+
+#### 13.2 Abrir um Pull Request no GitHub
+- **a)** Acesse seu repositório no GitHub.
+- **b)** Clique em "Compare & pull request" ao lado da branch que você acabou de enviar.
+- **c)** Verifique se:
+   - **Base branch**: É a branch para onde você deseja enviar as alterações (geralmente main ou master).
+   - **Compare branch**: É a branch que contém suas mudanças (ex: nova-funcionalidade).
+
+- **d)** Adicione um título e uma descrição explicando o que foi alterado e por quê.
+- **e)** Clique em "Create pull request".
+
+
+#### 13.3 Revisão e Aprovação
+- Outros desenvolvedores podem agora revisar o PR, adicionar comentários ou solicitar alterações.
+- O PR pode ser aprovado e mesclado depois que todos concordarem que está pronto.
+
+#### 13.4 Mesclando o Pull Request
+- **a)** Se as alterações estão prontas, clique em "Merge pull request".
+- **b)** Escolha o tipo de merge:
+
+   - **Merge commit**: Cria um novo commit para o merge.
+   - **Squash and merge**: Combina todos os commits em um só antes do merge.
+   - **Rebase and merge**: Aplica os commits da branch de funcionalidade diretamente sobre a branch principal.
+- **c)** Clique em **"Confirm merge"** para concluir.
+
+#### 13.5 Deletando a Branch Após o Merge
+- Após o merge, é uma boa prática excluir a branch de funcionalidade para manter o repositório organizado.
+- No GitHub, você pode clicar em "Delete branch" logo após a mesclagem.
+
+
+### Comandos Úteis para Pull Requests
+- **a)** Atualizar a Branch Antes do PR
+Antes de abrir o PR, é importante garantir que sua branch está atualizada com a branch principal.
+```
+git checkout nova-funcionalidade
+git pull origin main
+git push
+```
+
+- **b)** Verificar Branches Remotas e Locais
+Listar branches locais:
+```
+git branch
+```
+Listar branches remotas:
+```
+git branch -r
+```
+
+
+## Diferença Entre Pull Request e git pull
+- **Pull Request**: É uma solicitação para mesclar uma branch em outra e geralmente envolve uma revisão de código.
+- **git pull**: Atualiza seu repositório local com as alterações do repositório remoto.
