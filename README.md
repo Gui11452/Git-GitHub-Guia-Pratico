@@ -3,7 +3,7 @@
 
 ## Sumário
 1. [O que e Git](#1---o-que-e-git)
-2. [O que e Github](#1---o-que-e-github)
+2. [O que e Github](#2---o-que-e-github)
 3. [Instalacão do Git no Windows](#3---instalacão-do-git-no-windows)
 4. [Salvando a primeira versão de um projeto no GitHub](#4---salvando-a-primeira-versão-de-um-projeto-no-gitHub)
 5. [Salvando um Novo Commit](#5---salvando-um-novo-commit)
@@ -810,7 +810,7 @@ Isso baixa as alterações para seu repositório local, mas você pode decidir q
 
 
 
-## 13. Pull Request
+## 13 - Pull Request
 Um Pull Request (PR) é uma solicitação de merge em plataformas de hospedagem de código, como GitHub, GitLab ou Bitbucket. Ele é utilizado quando você quer mesclar as mudanças de uma branch para outra, geralmente de uma branch de funcionalidade para a branch principal (main ou master).
 
 ### Quando Usar um Pull Request?
