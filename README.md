@@ -17,6 +17,7 @@
 13. [Pull Request](#13---pull-request)
 14. [git log](#14---git-log)
 15. [Fork e Clone](#15---fork-e-clone)
+16. [Vários Desenvolvedores no Mesmo Projeto](#16---vários-desenvolvedores-no-mesmo-projeto)
 
 
 ## 1 - O que e Git
@@ -1129,3 +1130,161 @@ git push origin main
 | `git fetch upstream` | Busca as atualizações do repositório original.
 | `git merge upstream/main` | Mescla as atualizações na branch local.
 | `git push origin main` | Envia as mudanças para o fork no GitHub.
+
+
+
+## 16 - Vários Desenvolvedores no Mesmo Projeto
+Quando dois ou mais desenvolvedores trabalham no mesmo projeto, é fundamental organizar o fluxo de trabalho para evitar conflitos e manter o repositório sincronizado. O Git e o GitHub oferecem ferramentas para facilitar a colaboração, garantindo que as alterações de todos sejam incorporadas sem problemas.
+
+### 16.1 - Fluxo com Branches (Feature Branch Workflow)
+Cada desenvolvedor cria branches específicas para trabalhar em suas tarefas. Quando uma tarefa é concluída, o desenvolvedor abre um Pull Request para mesclar a branch no repositório principal.
+
+- **a)** Clonar o Repositório
+```
+git clone https://github.com/empresa/projeto.git
+cd projeto
+```
+
+- **b)** Criar uma Nova Branch para a Tarefa
+```
+git checkout -b minha-funcionalidade
+```
+
+- **c)** Fazer Alterações e Criar Commits
+```
+git add .
+git commit -m "Implementa nova funcionalidade"
+```
+
+- **d)** Enviar a Branch para o Remoto
+```
+git push origin minha-funcionalidade
+```
+
+- **e)** Abrir um Pull Request no GitHub
+   - Acesse o repositório no GitHub e clique em Compare & Pull Request.
+   - Descreva as alterações e envie para revisão.
+
+- **f)** Revisar, Aprovar e Mesclar
+   - Outros desenvolvedores revisam o Pull Request.
+   - Quando aprovado, a branch é mesclada na main.
+
+
+### 16.2 - Atualizando o Repositório Local
+Antes de começar a trabalhar, é essencial garantir que seu código esteja atualizado com as últimas mudanças no repositório remoto.
+
+- **a)** Mudar para a Branch Principal
+```
+git checkout main
+```
+
+- **b)** Baixar e Mesclar Alterações do Remoto
+```
+git pull origin main
+```
+
+
+### 16.3 - Resolver Conflitos de Código
+Conflitos podem acontecer quando dois desenvolvedores alteram a mesma parte de um arquivo. Veja como resolvê-los:
+
+- **a)** Fazer Pull para Verificar Alterações do Remoto
+```
+git pull origin main
+```
+
+- **b)** Se houver conflitos, o Git mostrará uma mensagem como esta:
+```
+CONFLICT (content): Merge conflict in arquivo.txt
+Editar o Arquivo em Conflito
+O Git marca as seções conflitantes assim:
+
+plaintext
+Copiar código
+<<<<<<< HEAD
+Código do desenvolvedor A
+=======
+Código do desenvolvedor B
+>>>>>>> main
+```
+
+- **c)** Escolha e Combine o Código Corretamente, depois adicione o arquivo ao stage:
+```
+git add arquivo.txt
+```
+
+- **d)** Criar um Commit para Finalizar a Resolução
+```
+git commit -m "Resolve conflito em arquivo.txt"
+```
+
+- **e)** Enviar as Alterações para o Repositório Remoto
+```
+git push origin minha-funcionalidade
+```
+
+
+### 16.4 - Sincronizando Forks
+Quando você trabalha com um fork do projeto, é necessário manter o seu fork sincronizado com o repositório original.
+
+- **a)** Adicionar o Repositório Original como Upstream
+```
+git remote add upstream https://github.com/empresa/projeto.git
+```
+
+- **b)** Buscar Alterações do Upstream
+```
+git fetch upstream
+```
+
+- **c)** Mesclar Alterações com a Branch Principal
+```
+git checkout main
+git merge upstream/main
+```
+
+- **d)** Enviar para o Fork
+```
+git push origin main
+```
+
+
+### 16.5 - Fluxo com Revisão de Código e Pull Requests
+- **Pull Requests (PRs)**: São usados para revisar e aprovar alterações antes de integrá-las à branch principal.
+- **Revisores**: Outros desenvolvedores podem adicionar comentários, sugerir melhorias ou solicitar mudanças.
+- **Checks Automatizados**: Pode-se configurar CI/CD para rodar testes automáticos sempre que um PR é aberto.
+
+
+### 16.6 - Exemplo Completo de Trabalho Colaborativo
+
+- **a)** Desenvolvedor A cria a branch nova-funcionalidade:
+```
+git checkout -b nova-funcionalidade
+```
+
+- **b)** Desenvolvedor A faz commits e envia para o GitHub:
+```
+git add .
+git commit -m "Implementa nova funcionalidade"
+git push origin nova-funcionalidade
+```
+
+- **c)** Desenvolvedor B atualiza sua branch main com o repositório remoto:
+```
+git checkout main
+git pull origin main
+```
+
+- **d)** Desenvolvedor A abre um Pull Request para mesclar nova-funcionalidade na main.
+- **e)** Desenvolvedor B revisa, aprova e mescla o PR.
+
+
+### 16.7 - Resumo de Comandos Importantes
+| Comando   | Descrição       | 
+| :---------- | :--------- | 
+| `git clone <URL>` | Clona o repositório para a máquina local.
+| `git checkout -b <nova-branch>` | Cria e muda para uma nova branch.
+| `git pull origin main` | Atualiza a branch local com o remoto.
+| `git push origin <branch>` | Envia uma branch para o repositório remoto.
+| `git remote add upstream <URL>` | Adiciona o repositório original como upstream.
+| `git fetch upstream` | Baixa as atualizações do upstream.
+| `git merge upstream/main` | Mescla as atualizações com a branch local.
