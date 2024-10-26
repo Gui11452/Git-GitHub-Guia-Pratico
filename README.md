@@ -1033,7 +1033,7 @@ Fork e Clone são dois conceitos importantes no Git/GitHub, mas são usados para
 - Fork é uma cópia do repositório remoto para sua conta no GitHub ou GitLab.
 - Ele é útil quando você quer modificar um projeto existente sem alterar diretamente o repositório original.
 - Permite que você trabalhe livremente e, se quiser, envie Pull Requests para o projeto original.
-**Uso comum**: Contribuições em projetos open-source ou personalização de repositórios de outras pessoas.
+- **Uso comum**: Contribuições em projetos open-source ou personalização de repositórios de outras pessoas.
 
 ### Como Fazer Fork de um Repositório
 - Acesse o repositório no GitHub que deseja forkar.
@@ -1054,7 +1054,7 @@ Agora, você pode modificá-lo e enviar um Pull Request para o repositório orig
 ### O Que é Clone?
 - Clone é o processo de baixar uma cópia local de um repositório remoto (seu ou de outra pessoa) para o seu computador.
 - Ele permite que você trabalhe localmente, faça alterações e depois envie essas mudanças de volta para o repositório remoto.
-**Uso comum**: Desenvolver localmente em um projeto e sincronizar com o repositório remoto.
+- **Uso comum**: Desenvolver localmente em um projeto e sincronizar com o repositório remoto.
 
 
 ### Como Clonar um Repositório
