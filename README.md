@@ -15,6 +15,7 @@
 11. [Como Resolver Conflitos no Git](#11---como-resolver-conflitos-no-git)
 12. [git pull](#12---git-pull)
 13. [Pull Request](#13---pull-request)
+14. [git log](#14---git-log)
 
 
 ## 1 - O que e Git
@@ -533,6 +534,9 @@ Com o git checkout, você pode voltar a um commit específico ou restaurar um ar
 git checkout <ID-do-commit>
 ```
 Isso coloca o repositório em estado detached HEAD. Você pode explorar o estado do projeto nesse commit, mas precisará voltar para uma branch para continuar trabalhando.
+```
+git checkout main
+```
 
 #### b) Voltar a Um Arquivo Modificado Sem Alterar o Histórico
 ```
@@ -905,7 +909,117 @@ Listar branches remotas:
 git branch -r
 ```
 
-
-## Diferença Entre Pull Request e git pull
+### Diferença Entre Pull Request e git pull
 - **Pull Request**: É uma solicitação para mesclar uma branch em outra e geralmente envolve uma revisão de código.
 - **git pull**: Atualiza seu repositório local com as alterações do repositório remoto.
+
+
+## 14 - git log
+
+### Uso Básico do git log
+```
+git log
+```
+Saída:
+```
+commit a1b2c3d4 (HEAD -> main)
+Author: Seu Nome <seuemail@exemplo.com>
+Date:   Fri Oct 25 12:00:00 2024 -0300
+
+    Adiciona nova funcionalidade
+```
+- **commit a1b2c3d4**: O ID (ou hash) do commit.
+- **HEAD -> main**: Indica a branch atual e onde o HEAD está apontando.
+- **Author**: Quem fez o commit.
+- **Date**: Quando o commit foi realizado.
+- **Mensagem**: A mensagem associada ao commit, explicando as alterações.
+
+
+### Opções Úteis do git log
+#### 14.1 - Exibir Histórico Resumido (oneline)
+```
+git log --oneline
+```
+- Saída:
+
+```
+a1b2c3d4 Adiciona nova funcionalidade
+5f6e7d8a Corrige bug na tela de login
+```
+- Cada commit é exibido em uma linha com seu ID curto e a mensagem de commit.
+
+
+#### 14.2 - Limitar o Número de Commits Exibidos
+```
+git log -n 5
+```
+Exibe apenas os últimos 5 commits.
+
+
+#### 14.3 - Mostrar Commits de um Arquivo Específico
+```
+git log -- arquivo.txt
+```
+Exibe apenas os commits que modificaram o arquivo arquivo.txt.
+
+
+#### 14.4 - Mostrar Diferenças Entre Commits (git log -p)
+```
+git log -p
+```
+Exibe as alterações feitas em cada commit (um diff para cada um).
+
+
+#### 14.5 - Ver Log de Uma Branch Remota
+```
+git log origin/main
+```
+Exibe o histórico de commits da branch remota main.
+
+
+#### 14.6 - Filtrar Commits por Autor
+```
+git log --author="Nome do Autor"
+```
+Exibe apenas os commits realizados pelo autor especificado.
+
+
+#### 14.7 - Log Com Data e Mensagens Resumidas
+```
+git log --pretty=format:"%h %an %ar - %s"
+```
+
+Saída:
+```
+a1b2c3d4 Seu Nome 2 days ago - Adiciona nova funcionalidade
+5f6e7d8a Outro Autor 4 weeks ago - Corrige bug
+```
+- **%h**: Hash curto.
+- **%an**: Nome do autor.
+- **%ar**: Data relativa.
+- **%s**: Mensagem do commit.
+
+
+### Comandos Relacionados
+- Ver um Commit Específico:
+
+```
+git show <ID-do-commit>
+```
+Exibe os detalhes e alterações feitas no commit especificado.
+
+- Comparar Dois Commits:
+```
+git diff <ID-commit-1> <ID-commit-2>
+```
+
+### Resumo dos Comandos Importantes
+| Comando   | Descrição       | 
+| :---------- | :--------- | 
+| `git log` | Exibe o histórico completo de commits. | 
+| `git log --oneline` | Exibe o histórico resumido (um commit por linha). | 
+| `git log -n 5` | Mostra os últimos 5 commits. |  
+| `git log --author="Nome"` | Filtra commits por autor. |  
+| `git log -- arquivo.txt` | Mostra commits que alteraram um arquivo específico. |  
+| `git log -p` | Exibe as diferenças em cada commit. |  
+
