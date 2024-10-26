@@ -16,6 +16,7 @@
 12. [git pull](#12---git-pull)
 13. [Pull Request](#13---pull-request)
 14. [git log](#14---git-log)
+15. [Fork e Clone](#15---fork-e-clone)
 
 
 ## 1 - O que e Git
@@ -1023,3 +1024,108 @@ git diff <ID-commit-1> <ID-commit-2>
 | `git log -- arquivo.txt` | Mostra commits que alteraram um arquivo específico. |  
 | `git log -p` | Exibe as diferenças em cada commit. |  
 
+
+
+## 15 - Fork e Clone
+Fork e Clone são dois conceitos importantes no Git/GitHub, mas são usados para propósitos diferentes. Ambos permitem trabalhar em repositórios, mas o fork cria uma cópia completa do repositório em sua conta GitHub, enquanto o clone cria uma cópia local do repositório para trabalhar no seu computador.
+
+### O Que é Fork?
+- Fork é uma cópia do repositório remoto para sua conta no GitHub ou GitLab.
+- Ele é útil quando você quer modificar um projeto existente sem alterar diretamente o repositório original.
+- Permite que você trabalhe livremente e, se quiser, envie Pull Requests para o projeto original.
+**Uso comum**: Contribuições em projetos open-source ou personalização de repositórios de outras pessoas.
+
+### Como Fazer Fork de um Repositório
+- Acesse o repositório no GitHub que deseja forkar.
+- Clique em "Fork" no canto superior direito.
+- Escolha sua conta pessoal ou uma organização.
+- O GitHub criará uma cópia do repositório na sua conta.
+
+
+### Exemplo de Fork:
+Você quer colaborar com um projeto chamado projeto-exemplo. Após o fork, ele estará disponível na sua conta com o nome:
+
+```
+https://github.com/seu-usuario/projeto-exemplo
+```
+Agora, você pode modificá-lo e enviar um Pull Request para o repositório original.
+
+
+### O Que é Clone?
+- Clone é o processo de baixar uma cópia local de um repositório remoto (seu ou de outra pessoa) para o seu computador.
+- Ele permite que você trabalhe localmente, faça alterações e depois envie essas mudanças de volta para o repositório remoto.
+**Uso comum**: Desenvolver localmente em um projeto e sincronizar com o repositório remoto.
+
+
+### Como Clonar um Repositório
+- No repositório no GitHub, clique em "Code".
+- Escolha HTTPS ou SSH e copie a URL.
+- No terminal, execute:
+```
+git clone <URL-do-repositorio>
+```
+
+
+### Exemplo de Clone:
+Você quer baixar o repositório forkado ou original para trabalhar localmente.
+```
+git clone https://github.com/seu-usuario/projeto-exemplo.git
+```
+Isso criará uma pasta chamada projeto-exemplo contendo todos os arquivos do repositório.
+
+
+### Diferença Entre Fork e Clone
+| Aspecto   | Fork       | Clone | 
+| :---------- | :--------- |  :--------- | 
+| `Localização` | Cópia no GitHub (repositório remoto) | Cópia local no seu computador | 
+| `Propósito` | Modificar sem afetar o repositório original	 | Trabalhar localmente no projeto |
+| `Modificação` | Precisa enviar Pull Request para o projeto original | Envia mudanças com push para o remoto |
+| `Comando Git` | Feito via interface do GitHub | `git clone <URL>`  |
+
+
+### Como Usar Fork e Clone Juntos
+- **1** = Fork o projeto original no GitHub para sua conta.
+
+- **2** = Clone o fork para sua máquina:
+```
+git clone https://github.com/seu-usuario/projeto-exemplo.git
+```
+- **3** = Trabalhe localmente fazendo alterações e commits:
+
+```
+git add .
+git commit -m "Minha contribuição"
+git push origin main
+```
+- **4** = Envie um Pull Request para o repositório original.
+
+
+### Sincronizando o Fork com o Repositório Original
+- **1** = Adicione o repositório original como upstream:
+```
+git remote add upstream https://github.com/original-usuario/projeto-exemplo.git
+```
+- **2** = Busque atualizações do upstream:
+```
+git fetch upstream
+```
+
+- **3** = Mescle as mudanças na sua branch local:
+```
+git merge upstream/main
+```
+
+- **4** = Envie as atualizações para o fork no GitHub:
+```
+git push origin main
+```
+
+
+### Resumo dos Comandos
+| Comando   | Descrição       | 
+| :---------- | :--------- | 
+| `git clone <URL>` | Clona um repositório remoto para sua máquina.
+| `git remote add upstream <URL-original>` | Adiciona o repositório original como upstream.
+| `git fetch upstream` | Busca as atualizações do repositório original.
+| `git merge upstream/main` | Mescla as atualizações na branch local.
+| `git push origin main` | Envia as mudanças para o fork no GitHub.
