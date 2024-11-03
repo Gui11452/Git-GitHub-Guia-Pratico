@@ -19,6 +19,7 @@
 15. [Fork e Clone](#15---fork-e-clone)
 16. [Vários Desenvolvedores no Mesmo Projeto](#16---vários-desenvolvedores-no-mesmo-projeto)
 17. [Flags](#17---flags)
+18. [Master e Main](#18---master-e-main)
 
 
 ## 1 - O que e Git
@@ -221,7 +222,25 @@ git checkout nome-da-branch
 git checkout -b nome-da-branch
 ```
 
-### 7.2 - Visualizando Branches
+
+### 7.2 - git branch new_branch master
+```
+git branch new_branch master
+```
+cria uma nova branch chamada **new_branch** a partir do commit atual da branch master, **mas sem trocar para ela automaticamente**. 
+
+- **git branch**: Esse comando serve para criar, listar ou deletar branches no Git.
+- **new_branch**: O nome da nova branch que será criada.
+- **master**: O ponto de partida para a nova branch. Ao adicionar master, você indica que quer criar new_branch baseada no commit mais recente da branch master.
+
+Então, esse comando **cria uma nova branch new_branch que é uma cópia exata do estado atual da branch master**. No entanto, **você ainda está na branch em que estava antes de rodar o comando**. Para começar a trabalhar em new_branch, você precisa mudar para ela com o comando:
+```
+git checkout new_branch
+# ou, mais moderno:
+git switch new_branch
+```
+
+### 7.3 - Visualizando Branches
 #### Listar todas as branches locais
 ```
 git branch
@@ -238,7 +257,7 @@ git branch -a
 ```
 
 
-### 7.3 - Fazendo Merge (Mesclando Branches)
+### 7.4 - Fazendo Merge (Mesclando Branches)
 Quando uma funcionalidade ou correção está pronta, você pode mesclar a branch com a branch principal. Exemplo de Merge:
 
 #### Primeiro, vá para a branch main:
@@ -252,7 +271,7 @@ git merge nova-funcionalidade
 ```
 
 
-### 7.4 - Deletando uma Branch
+### 7.5 - Deletando uma Branch
 Após mesclar a branch, você pode deletá-la para manter o repositório organizado.
 
 #### Deletar uma branch local:
@@ -266,13 +285,13 @@ git push origin --delete nome-da-branch
 ```
 
 
-### 7.5 - Quando e Como Usar Branches?
+### 7.6 - Quando e Como Usar Branches?
 - **Funcionalidades grandes**: Crie uma branch para cada nova funcionalidade.
 - **Correções críticas**: Use uma branch separada para corrigir bugs e depois mescle com o código principal.
 - **Colaboração**: Cada membro da equipe pode trabalhar em sua própria branch e depois mesclá-la.
 
 
-### 7.6 - Exemplo Completo de Uso de Branches
+### 7.7 - Exemplo Completo de Uso de Branches
 #### Crie e mude para uma nova branch:
 ```
 git checkout -b nova-funcionalidade
@@ -1446,3 +1465,43 @@ Exemplo:
 git checkout --orphan novo-branch
 ```
 Agora, novo-branch não terá histórico algum.
+
+
+
+## 18 - Master e Main
+A **branch principal pode ser tanto master quanto main**, dependendo do padrão adotado ao criar o repositório. Historicamente, o Git usava master como nome padrão para a branch principal, mas muitos repositórios novos agora utilizam main como padrão.
+
+### Por que a Mudança?
+Nos últimos anos, a comunidade de desenvolvimento fez uma transição para main como o nome padrão da branch principal, em um esforço para adotar uma linguagem mais inclusiva. O GitHub e outras plataformas de hospedagem de código agora configuram main como a branch principal por padrão em novos repositórios.
+
+### Como Saber Qual é a Branch Principal no Seu Projeto?
+Para verificar qual é a branch principal no seu repositório, você pode usar:
+```
+git branch
+```
+O Git listará todas as branches e indicará a branch atual com um asterisco (*). Por exemplo:
+```
+* main
+  feature-branch
+```
+ou
+```
+* master
+  feature-branch
+```
+
+### Como Alterar a Branch Principal
+Se você quiser mudar de master para main, pode usar os seguintes comandos:
+
+- Renomeie a branch localmente:
+```
+git branch -m master main
+```
+
+- Atualize o repositório remoto:
+```
+git push -u origin main
+```
+- No repositório remoto (por exemplo, no GitHub), vá para as configurações e altere a branch padrão para main.
+
+- Em resumo, hoje em dia, muitos repositórios novos começam com main, mas master ainda é comum em repositórios mais antigos.
