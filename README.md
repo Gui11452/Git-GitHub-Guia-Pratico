@@ -18,6 +18,7 @@
 14. [git log](#14---git-log)
 15. [Fork e Clone](#15---fork-e-clone)
 16. [Vários Desenvolvedores no Mesmo Projeto](#16---vários-desenvolvedores-no-mesmo-projeto)
+17. [Flags](#17---flags)
 
 
 ## 1 - O que e Git
@@ -1288,3 +1289,160 @@ git pull origin main
 | `git remote add upstream <URL>` | Adiciona o repositório original como upstream.
 | `git fetch upstream` | Baixa as atualizações do upstream.
 | `git merge upstream/main` | Mescla as atualizações com a branch local.
+
+
+
+## 17 - Flags
+O Git é uma ferramenta poderosa de controle de versão e tem várias "flags" que você pode usar para modificar o comportamento dos comandos. Vou explicar os mais comuns, com exemplos, para te ajudar a entender como cada um funciona e quando usá-los.
+
+### -a: Adicionar todas as mudanças
+Usado com o comando git commit, a flag -a **adiciona automaticamente todas as mudanças de arquivos rastreados (excluindo novos arquivos) para o commit**. É uma maneira rápida de commitar alterações **sem precisar usar git add**.
+
+Exemplo:
+```
+git commit -a -m "Commitando todas as mudanças"
+```
+Esse comando adiciona todas as alterações nos arquivos já rastreados e cria um commit com a mensagem especificada.
+
+
+### -m: Mensagem de commit
+A flag -m é usada para **adicionar uma mensagem ao seu commit** diretamente no comando git commit, evitando que você precise abrir o editor de texto.
+
+Exemplo:
+```
+git commit -m "Mensagem descritiva do que foi alterado"
+```
+Com isso, você cria um commit com a mensagem "Mensagem descritiva do que foi alterado".
+
+
+### -b: Criar e mudar de branch
+No comando git checkout e git switch, -b cria e muda automaticamente para uma nova branch.
+
+Exemplo:
+```
+git checkout -b nova-branch
+# ou
+git switch -c nova-branch
+```
+Esse comando cria a branch nova-branch e muda para ela.
+
+
+### -d e -D: Deletar branch
+Usado com git branch, -d deleta uma branch local. Caso você queira deletar uma branch que não foi completamente integrada ao histórico, use -D (força a deleção).
+
+Exemplo:
+```
+git branch -d branch-antiga  # Deleta a branch se ela já foi mesclada
+git branch -D branch-antiga  # Força a deleção
+```
+
+
+### -u: Define um repositório remoto
+Usado com o comando git push, o -u define uma referência para a branch remota, o que permite que você faça git push e git pull nas próximas vezes sem especificar o repositório e a branch.
+
+Exemplo:
+```
+git push -u origin minha-branch
+```
+Agora, minha-branch está associada ao remoto origin. Você pode fazer git pull ou git push sem especificar origin minha-branch nas próximas vezes.
+
+
+### --force ou -f: Força o push ou reset
+Usado principalmente com git push ou git reset, essa flag força a ação, ignorando conflitos. Tome cuidado ao usar, pois você pode sobrescrever alterações importantes.
+
+Exemplo:
+```
+git push --force origin minha-branch
+```
+Isso força o envio da sua branch para o repositório remoto, mesmo que haja divergências.
+
+
+### --amend: Editar o último commit
+Usado com git commit, o --amend permite que você edite o último commit, seja para alterar a mensagem ou adicionar arquivos que esqueceu.
+
+Exemplo:
+```
+git commit --amend -m "Nova mensagem para o commit"
+```
+Esse comando substitui a mensagem do último commit pela nova mensagem especificada.
+
+
+### --rebase: Reaplica commits em cima de outro branch
+Usado com git pull e git rebase, ele reaplica commits em cima do branch base, evitando merges adicionais.
+
+Exemplo:
+```
+git pull --rebase origin main
+```
+Isso atualiza seu branch atual com o conteúdo do branch main sem criar um commit de merge.
+
+
+### --squash: Agrupar commits
+Usado com o comando git merge, a flag --squash combina todos os commits de um branch em um único commit.
+
+Exemplo:
+```
+git merge --squash feature-branch
+git commit -m "Feature finalizada"
+```
+Aqui, todos os commits em feature-branch são agrupados e, em seguida, você cria um único commit.
+
+
+### --hard: Reset completo
+Usado com git reset, o --hard desfaz todas as mudanças no diretório de trabalho e no índice, fazendo com que seu repositório volte a um estado específico.
+
+Exemplo:
+```
+git reset --hard HEAD~1
+```
+Esse comando desfaz o último commit e todas as mudanças no diretório, voltando o repositório para o estado de um commit antes do HEAD.
+
+
+### --soft: Reset suave
+Ao contrário do --hard, o --soft mantém as mudanças no diretório e no índice, permitindo que você crie um novo commit facilmente.
+
+Exemplo:
+```
+git reset --soft HEAD~1
+```
+Aqui, o último commit é desfeito, mas as mudanças permanecem no índice.
+
+
+### --cached: Remove do índice
+Usado com git rm, o --cached remove o arquivo do índice (a área de staging) sem deletá-lo do diretório de trabalho.
+
+Exemplo:
+```
+git rm --cached arquivo.txt
+```
+Esse comando remove arquivo.txt do índice, mas ele permanece no seu sistema de arquivos.
+
+
+### -p ou --patch: Seleciona mudanças específicas
+Usado com git add, git checkout e git diff, o -p permite que você selecione partes específicas das mudanças para adicionar ou descartar.
+
+Exemplo:
+```
+git add -p
+```
+Esse comando permite que você adicione partes das mudanças de cada arquivo ao índice.
+
+
+### --all ou -A: Adicionar todas as mudanças (inclusive novos arquivos)
+A flag -A com git add adiciona todas as mudanças (arquivos rastreados e novos arquivos) ao índice.
+
+Exemplo:
+```
+git add -A
+```
+Adiciona todas as alterações ao staging, permitindo que você faça um commit de todas as mudanças no repositório.
+
+
+### --orphan: Criar um branch órfão
+Usado com git checkout, cria um branch órfão, que não tem histórico. Isso é útil para iniciar uma nova linha de desenvolvimento.
+
+Exemplo:
+```
+git checkout --orphan novo-branch
+```
+Agora, novo-branch não terá histórico algum.
