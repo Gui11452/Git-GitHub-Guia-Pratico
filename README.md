@@ -22,6 +22,7 @@
 18. [Master e Main](#18---master-e-main)
 19. [Git Stash](#19---git-stash)
 20. [Git RM](#20---git-rm)
+21. [Git Tag](#21---git-tag)
 
 
 ## 1 - O que e Git
@@ -1628,3 +1629,126 @@ Resumo
 
 
 
+### 21 - Git Tag
+O comando git tag é usado para criar, listar, buscar, e gerenciar tags no Git. As tags são referências permanentes para commits específicos e, geralmente, são usadas para marcar pontos importantes na história do projeto, como lançamentos de versões (v1.0, v2.0, etc). Vamos explorar as principais funcionalidades e usos de git tag.
+
+#### 21.1 - Listando Tags
+Para listar todas as tags existentes no repositório, você pode usar:
+
+```
+git tag
+```
+Isso exibe todas as tags em ordem alfabética. Para listar tags que começam com um padrão específico, você pode usar uma expressão:
+
+```
+git tag -l "v1.*"
+```
+Esse exemplo lista todas as tags que começam com "v1." (por exemplo, v1.0, v1.1).
+
+#### 21.2 - Criando Tags
+Existem dois tipos de tags no Git:
+
+- **Tags leves (Lightweight Tags)**: Funcionam como ponteiros simples para um commit.
+- **Tags anotadas (Annotated Tags)**: Armazenam mais informações, como mensagem, data, e o autor da tag.
+- Criando uma Tag Leve
+A tag leve é uma referência rápida a um commit específico:
+
+```
+git tag nome_da_tag
+```
+Esse comando cria uma tag com o nome nome_da_tag no último commit.
+
+- Criando uma Tag Anotada
+Para uma tag com mais informações (recomendada para marcar versões de release), você usa a opção -a (annotated):
+
+```
+git tag -a v1.0 -m "Versão 1.0 - Primeira versão oficial"
+-a v1.0: Especifica o nome da tag.
+-m "Versão 1.0 - Primeira versão oficial": Define uma mensagem descritiva da tag.
+```
+Isso cria uma tag anotada v1.0 com uma descrição. Para verificar os detalhes, você pode usar:
+
+```
+git show v1.0
+```
+- Criando uma Tag em um Commit Específico
+Para criar uma tag em um commit anterior, passe o hash do commit:
+
+```
+git tag -a v1.1 abc123 -m "Descrição da versão 1.1"
+```
+Isso cria uma tag v1.1 no commit identificado pelo hash abc123.
+
+#### 21.3 - Exibindo uma Tag Específica
+Para ver o histórico e detalhes de uma tag específica:
+
+```
+git show nome_da_tag
+```
+Esse comando exibe o commit associado à tag, incluindo a mensagem, data, e autor da tag (para tags anotadas).
+
+#### 21.4 - Excluindo Tags
+Para excluir uma tag localmente, use:
+
+```
+git tag -d nome_da_tag
+```
+- **Atenção**: Excluir uma tag local não remove a tag do repositório remoto.
+
+Para remover a tag do repositório remoto (por exemplo, origin), use:
+
+```
+git push origin --delete nome_da_tag
+```
+Isso é útil quando você precisa corrigir uma tag em um commit errado ou renomear uma tag.
+
+#### 21.5 - Compartilhando Tags com o Remoto
+Por padrão, git push não envia tags. Para compartilhar uma tag específica:
+
+```
+git push origin nome_da_tag
+```
+Para enviar todas as tags de uma vez para o remoto:
+
+```
+git push --tags
+```
+
+#### 21.6 - Atualizando uma Tag
+No Git, tags são imutáveis, então a atualização de uma tag exige a exclusão e recriação da mesma.
+
+#### Para atualizar uma tag:
+- Exclua a tag localmente e no remoto.
+- Crie a nova tag e envie novamente.
+
+Exemplo:
+```
+git tag -d v1.0
+git push origin --delete v1.0
+git tag -a v1.0 -m "Nova descrição para v1.0"
+git push origin v1.0
+```
+
+#### 21.7 - Checando Out com Tags
+Você pode fazer checkout de uma tag para inspecionar o estado do repositório naquele ponto específico:
+
+```
+git checkout v1.0
+```
+Este checkout muda o repositório para o estado de "detached HEAD" no commit da tag.
+
+#### 21.8 - Práticas Comuns de Nomeação de Tags
+Na prática, é comum adotar convenções de nomeação para tags, principalmente em projetos versionados. Um padrão comum é:
+
+- **vX.Y.Z**: Onde X representa a versão principal, Y representa a versão secundária, e Z representa um patch ou correção.
+- **rcX**: Marcando versões "release candidate" (exemplo, v1.0-rc1).
+
+#### Resumo
+- **git tag**: Lista todas as tags.
+- **git tag nome_da_tag**: Cria uma tag leve.
+- **git tag -a nome_da_tag -m "mensagem"**: Cria uma tag anotada.
+- **git tag -d nome_da_tag**: Deleta uma tag localmente.
+- **git push origin nome_da_tag**: Envia uma tag para o remoto.
+- **git push origin --delete nome_da_tag**: Remove uma tag do remoto.
+
+As tags são um recurso poderoso para versionamento, facilitando o controle e acesso a versões específicas do seu projeto ao longo do tempo.
