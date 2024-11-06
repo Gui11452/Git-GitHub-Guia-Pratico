@@ -20,6 +20,8 @@
 16. [Vários Desenvolvedores no Mesmo Projeto](#16---vários-desenvolvedores-no-mesmo-projeto)
 17. [Flags](#17---flags)
 18. [Master e Main](#18---master-e-main)
+19. [Git Stash](#19---git-stash)
+20. [Git RM](#20---git-rm)
 
 
 ## 1 - O que e Git
@@ -1505,3 +1507,124 @@ git push -u origin main
 - No repositório remoto (por exemplo, no GitHub), vá para as configurações e altere a branch padrão para main.
 
 - Em resumo, hoje em dia, muitos repositórios novos começam com main, mas master ainda é comum em repositórios mais antigos.
+
+
+
+## 19 - Git Stash
+O comando git stash é super útil quando você precisa salvar alterações feitas nos seus arquivos de trabalho, mas ainda não quer fazer um commit. Ele armazena temporariamente essas mudanças e limpa seu diretório de trabalho para que você possa, por exemplo, trocar de branch ou fazer outras modificações sem perder o progresso que estava fazendo.
+
+Aqui está como funciona:
+
+### Salvar modificações:
+```
+git stash
+```
+Isso vai salvar todas as alterações não comitadas (arquivos modificados e arquivos novos) em uma espécie de "pilha" e limpar seu diretório de trabalho.
+
+### Ver a lista de stashes salvos:
+```
+git stash list
+```
+Isso vai mostrar todas as alterações guardadas. Cada entrada terá um identificador, como stash@{0}, stash@{1}, etc.
+
+### Recuperar o último stash:
+```
+git stash pop
+```
+Isso aplica o último stash na pilha ao seu diretório de trabalho e o remove da pilha.
+
+### Aplicar um stash específico:
+```
+git stash apply stash@{n}
+```
+Isso aplica o stash especificado (ex: stash@{2}) ao seu diretório de trabalho sem removê-lo da pilha.
+
+### Remover um stash específico:
+```
+git stash drop stash@{n}
+```
+Isso remove o stash especificado.
+
+### Limpar todos os stashes:
+```
+git stash clear
+```
+Isso remove todos os stashes guardados.
+
+### Opções para retomar as alterações
+Quando você quiser retomar as alterações que guardou com o git stash, tem duas principais opções para aplicá-las de volta no seu diretório de trabalho: git stash pop ou git stash apply.
+
+- Usar **git stash pop**:
+
+Esse comando aplica o stash mais recente (ou seja, o stash@{0}) e remove ele da pilha de stashes.
+É útil se você quer aplicar as alterações e também limpar o stash que você acabou de utilizar.
+```
+git stash pop
+```
+
+- Usar **git stash apply**:
+
+Esse comando aplica o stash, mas não o remove da pilha, então ele continua guardado para você reutilizar, se necessário.
+É bom se você quer aplicar as alterações sem deletá-las da pilha.
+```
+git stash apply
+```
+
+- Retomar um stash específico:
+
+Se você tiver múltiplos stashes salvos e quiser retomar um específico (por exemplo, stash@{2}), basta especificá-lo ao usar apply ou pop:
+```
+git stash apply stash@{2}
+```
+ou
+```
+git stash pop stash@{2}
+```
+Esses comandos devolvem suas mudanças no seu diretório de trabalho para você continuar de onde parou.
+
+
+## 20 - Git RM
+O comando git rm é usado para remover arquivos do repositório Git e também, por padrão, exclui esses arquivos do seu computador (diretório de trabalho). Ou seja, ele remove o arquivo tanto do repositório quanto do seu sistema de arquivos.
+Aqui estão os principais usos, com explicações sobre o que acontece com o arquivo no seu PC e no repositório:
+
+### Remover o arquivo do repositório e do computador
+Se você quer apagar um arquivo do repositório Git e também do seu diretório de trabalho (ou seja, do seu computador), use o comando básico git rm seguido do nome do arquivo:
+
+```
+git rm <nome-do-arquivo>
+```
+Após isso, faça um commit para registrar a remoção:
+```
+git commit -m "Remove <nome-do-arquivo>"
+```
+O que acontece: o arquivo será apagado do repositório Git e também será excluído do seu sistema de arquivos, ou seja, não estará mais no seu computador.
+
+### Remover o arquivo do repositório, mas mantê-lo no computador
+Se você quer parar de rastrear um arquivo no Git, mas quer mantê-lo no seu computador (no seu diretório de trabalho), use a opção --cached:
+
+```
+git rm --cached <nome-do-arquivo>
+```
+
+Depois disso, faça um commit para confirmar a remoção do rastreamento:
+```
+git commit -m "Stop tracking <nome-do-arquivo>"
+```
+O que acontece: o arquivo será removido do repositório, mas continuará presente no seu computador. É como dizer ao Git "pare de rastrear esse arquivo", mas mantendo-o localmente.
+Essa opção é útil, por exemplo, para arquivos de configuração local que não precisam ser rastreados por todos que usam o repositório, mas que você ainda quer manter no seu próprio sistema.
+
+### Remover um diretório inteiro e todos os arquivos dentro dele
+Se você quer remover um diretório inteiro, incluindo todos os arquivos e subpastas, use a opção -r (recursivo):
+```
+git rm -r <nome-do-diretorio>
+```
+
+Depois, confirme a remoção com um commit:
+```
+git commit -m "Remove <nome-do-diretorio> and its contents"
+```
+O que acontece: o diretório e todo o seu conteúdo serão removidos do repositório Git e excluídos do seu computador.
+Resumo
+
+
+
